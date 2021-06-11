@@ -1,4 +1,4 @@
-import { Observable, BehaviorSubject, Subject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 export type TStatus = "ready" | "in progress" | "done";
 
 export interface IState {
@@ -18,5 +18,7 @@ export default class StatusService {
     return this._status$.asObservable();
   }
 
-  //   changeStatus() {}
+  changeStatus(val: TStatus) {
+    this._status$.next(val);
+  }
 }
