@@ -12,14 +12,13 @@
 
 <script lang="ts">
 import { Vue } from "vue-class-component";
-import { Inject } from "vue-property-decorator";
 
-import StatusService, { TStatus } from "../services/StatusService";
+import StatusService from "../services/StatusService";
 
 export default class Status extends Vue {
   statusService = new StatusService();
 
-  public status!: TStatus;
+  public status = "";
 
   mounted() {
     this.statusService.status$.subscribe((data) => (this.status = data));
@@ -27,7 +26,7 @@ export default class Status extends Vue {
 
   changeStatus() {
     console.log("should change status");
-    console.log(">>>>>>>>>>>>>", this.statusService);
+    console.log(">>>>>>>>>>>>>Current status:", this.status);
     //TODO
     // this.statusService.
   }
