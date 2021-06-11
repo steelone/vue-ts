@@ -3,6 +3,7 @@
     <div>
       Change global status here:
       <h3 class="status-value" @click="selectorToggler()">{{ status }}</h3>
+      <button @click="switchStatus()">switchStatus</button>
     </div>
     <div>
       <Selector
@@ -44,6 +45,24 @@ export default class Status extends Vue {
 
   selectorToggler() {
     this.isSelectorVisible = !this.isSelectorVisible;
+  }
+  
+  switchStatus() {
+    console.log("Current status: ", this.status);
+    let newStatus: TStatus = "in progress";
+    switch (this.status) {
+      case "ready":
+        newStatus = "in progress";
+        break;
+      case "in progress":
+        newStatus = "done";
+        break;
+      case "done":
+        newStatus = "ready";
+        break;
+    }
+    this.statusService.changeStatus(newStatus)
+    console.log("New Status: ", this.status);
   }
 }
 </script>
